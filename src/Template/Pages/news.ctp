@@ -31,7 +31,7 @@ $this->assign('image', $news->image_path1);
           </div>
         </section><!-- #news -->
 
-        <section class="topics_dict">
+        <section class="topics_table">
           <h1 class="ttl-bar-bold">
             この記事を見た人はこんな記事も見ています
           </h1>
@@ -40,7 +40,7 @@ $this->assign('image', $news->image_path1);
             <?php if ($newsRand[$i]->id === $news->id) continue; ?>
             <div class="sub_news col-6 col-sm-3 none-padding">
               <section class="each_table">
-                <div class="topics_table_img" style="background-color:#eee;">
+                <div class="topics_table_img">
                   <div class="inner_img">
                     <?= $this->Html->image($newsRand[$i]->image_path1, ['class' => 'img-fluid']); ?>
                   </div>

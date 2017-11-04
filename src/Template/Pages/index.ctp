@@ -4,6 +4,7 @@ use Cake\Core\Configure;
 $this->assign('title', '医者ドットコム');
 $this->assign('description', null);
 $this->assign('image', null);
+$this->assign('prefix', 'index')
 ?>
 
 <article>
@@ -20,7 +21,7 @@ $this->assign('image', null);
       <div class="row none-margin">
         <div class="main_news col-sm-6 none-padding">
           <section class="each_table">
-            <div class="topics_table_img" style="background-color:#eee;">
+            <div class="topics_table_img">
               <div class="inner_img">
                 <?= $this->Html->image($news[$ranking_n[0] - 1]->image_path1, ['class' => 'img-fluid']); ?>
               </div>
@@ -55,7 +56,7 @@ $this->assign('image', null);
             ?>
             <div class="sub_news col-6 none-padding">
               <section class="each_table">
-                <div class="topics_table_img" style="background-color:#eee;">
+                <div class="topics_table_img">
                   <div class="inner_img">
                     <?= $this->Html->image($news[$ranking_n[$i] - 1]->image_path1, ['class' => 'img-fluid']); ?>
                   </div>
