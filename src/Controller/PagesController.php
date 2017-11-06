@@ -85,7 +85,7 @@ class PagesController extends AppController
         $news = $this->News->find()->toArray();
         $questions = $this->Questions->find()->toArray();
 
-        require_once '/home/cwfolgkn/public_html/ishacom.biz/src/View/Helper/ga.php';
+        require_once '/home/vagrant/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $results = getMonthlyRanking($analytics, $profile);
@@ -103,7 +103,7 @@ class PagesController extends AppController
         ]);
         $disease = $this->Diseases->find()->toArray();
 
-        require_once '/home/cwfolgkn/public_html/ishacom.biz/src/View/Helper/ga.php';
+        require_once '/home/vagrant/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $results = getMonthlyRanking($analytics, $profile);
@@ -124,7 +124,7 @@ class PagesController extends AppController
         $category = $this->Categories->find()->contain(['Diseases'])->toArray();
         $news = $this->News->find()->toArray();
 
-        require_once '/home/cwfolgkn/public_html/ishacom.biz/src/View/Helper/ga.php';
+        require_once '/home/vagrant/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $results = getMonthlyRanking($analytics, $profile);
@@ -144,7 +144,7 @@ class PagesController extends AppController
         $newsArray = $this->News->find()->toArray();
         $newsRand = $this->News->find()->where(['category_id' => $news->category_id])->order('rand()')->limit(8)->toArray();
 
-        require_once '/home/cwfolgkn/public_html/ishacom.biz/src/View/Helper/ga.php';
+        require_once '/home/vagrant/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $results = getMonthlyRanking($analytics, $profile);

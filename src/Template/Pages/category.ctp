@@ -27,7 +27,7 @@ $this->assign('image', $category->image_path);
         ?>
         <div class="sub_news col-6 col-sm-3 none-padding">
           <section class="each_table">
-            <div class="topics_table_img" style="background-color:#eee;">
+            <div class="topics_table_img">
               <div class="inner_img">
                 <?= $this->Html->image($disease[$ranking_d_c[$i] - 1]->image_path, ['class' => 'img-fluid']); ?>
               </div>
