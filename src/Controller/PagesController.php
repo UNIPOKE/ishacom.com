@@ -153,4 +153,16 @@ class PagesController extends AppController
         $this->set(compact('news', 'newsArray', 'newsRand', 'ranking_n_c'));
         $this->set('_serialize', ['news']);
     }
+
+    public function question($id = null)
+    {
+      $this->loadModel('Questions');
+      $question = $this->Questions->get($id, [
+        'contain' => ['Categories', 'Answers']
+      ]);
+      $questionArray = $this->Questions->find()->contain(['Categories', 'Answers'])->toArray();
+
+      $this->set(compact('question', 'questionArray'));
+      $this->set('_serialize', ['question']);
+    }
 }
