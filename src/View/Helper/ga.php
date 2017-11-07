@@ -10,7 +10,7 @@ function initializeAnalytics()
   // Use the developers console and download your service account
   // credentials in JSON format. Place them in this directory or
   // change the key file location if necessary.
-  $KEY_FILE_LOCATION = '/home/vagrant/ishacom.com/ishacom-b0910a8c2487.json';
+  $KEY_FILE_LOCATION = '/home/vagrant/ishacom-b0910a8c2487.json';
 
   // Create and configure a new client object.
   $client = new Google_Client();
