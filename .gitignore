@@ -1,3 +1,5 @@
+/config/app.php
+
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*
@@ -9,6 +11,8 @@
 /tmp/tests/*
 !/tmp/tests/empty
 /tmp/debug_kit.sqlite
+
+/ishacom-b0910a8c2487.json
 
 /logs/*
 !/logs/empty
