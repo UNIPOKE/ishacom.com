@@ -1,3 +1,9 @@
+<?php
+$this->assign('title', $question->title);
+$this->assign('description', $question->description);
+$this->assign('image', $qustion->image_path);
+?>
+
 <article>
   <div class="container-fluid none-padding">
     <div class="row none-margin">
