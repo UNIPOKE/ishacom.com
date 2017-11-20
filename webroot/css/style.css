@@ -37,15 +37,15 @@ p {
   line-height: 1.429;
 }
 a {
-font-weight: 700;
-	color: #45dbe6;
+  font-weight: 700;
+  color: #4cbfd4;
 }
 a:hover {
-	color: #60e6cf;
+	color: #45dbe6;
   text-decoration: none;
 }
 a:active {
-	color: #60e6cf;
+	color: #45dbe6;
   text-decoration: none;
 }
 
@@ -242,14 +242,14 @@ a:active {
 }
 .each_table {
   height: 100%;
-  border: 1px solid #f1f46c;
+  border: 1px solid #eee;
   border-radius: 10px;
 }
 .topics_table_img {
   position: relative;
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #f1f46c;
+  border-bottom: 1px solid #eee;
 }
 .topics_table_img:before {
   content:"";
@@ -292,7 +292,7 @@ a:active {
 .topics_dict .row {
   margin: 0;
   padding: 20px 0;
-  border-bottom: 1px solid #fef37f;
+  border-bottom: 1px solid #eee;
 }
 
 @media screen and (max-width: 543px) {
@@ -313,7 +313,7 @@ a:active {
 }
 .topics_list > .row {
   margin: 10px 0;
-  border-bottom: 1px solid #fef37f;
+  border-bottom: 1px solid #eee;
 }
 .topics_list .col-sm-6 {
   padding: 0;
@@ -481,7 +481,7 @@ a:active {
 }
 #onayamiElement {
   padding: 10px 0;
-  border-top: 3px solid #fef37f;
+  border-top: 3px solid #eee;
 }
 #onayamiElement h2 {
   font-weight: 700;
