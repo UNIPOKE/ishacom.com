@@ -13,6 +13,8 @@
 /tmp/debug_kit.sqlite
 
 /ishacom-b0910a8c2487.json
+/.ftpconfig
+/.ftpignore
 
 /logs/*
 !/logs/empty
