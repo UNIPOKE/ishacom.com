@@ -13,6 +13,7 @@
   </script>
 
   <?= $this->Html->charset() ?>
+  <meta name="robots" content="noindex" />
   <meta name="description" content="<?= $this->fetch('description') ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
