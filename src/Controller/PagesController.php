@@ -77,8 +77,6 @@ class PagesController extends AppController
         $this->loadModel('News');
 
         $categories = $this->Categories->find()->contain(['Diseases'])->toArray();
-        $departments = $this->Departments->find()->toArray();
-        $doctors = $this->Doctors->find()->toArray();
         $news = $this->News->find()->toArray();
 
         require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
