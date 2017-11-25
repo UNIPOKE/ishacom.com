@@ -49,14 +49,16 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'index']);
+    // $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'index']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
 
-     $routes->connect('/adminhome', ['controller' => 'Pages', 'action' => 'display', 'home']);
-     $routes->connect('/pages/login-doctor', ['controller' => 'Pages', 'action' => 'loginDoctor']);
+     $routes->connect('/', ['controller' => 'Pages', 'action' => 'index']);
+     $routes->connect('/category/*', ['controller' => 'Pages', 'action' => 'category']);
+     $routes->connect('/disease/*', ['controller' => 'Pages', 'action' => 'disease']);
+     $routes->connect('/news/*', ['controller' => 'Pages', 'action' => 'news']);
 
     /**
      * Connect catchall routes for all controllers.
@@ -75,18 +77,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
-
-    Router::prefix('admin', function ($routes) {
-      $routes->fallbacks('DashedRoute');
-      $routes->connect('/login/flnvgliresmervoa', ['controller' => 'Staffs', 'action' => 'login']);
-      $routes->connect('/logout', ['controller' => 'Staffs', 'action' => 'logout']);
-    });
-
-    Router::prefix('doctor', function ($routes) {
-      $routes->fallbacks('DashedRoute');
-      $routes->connect('/login', ['controller' => 'Pages', 'action' => 'loginDoctor']);
-      $routes->connect('/logout', ['controller' => 'Pages', 'action' => 'logoutDoctor']);
-    });
 });
 
 /**

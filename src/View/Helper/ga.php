@@ -1,7 +1,7 @@
 <?php
 
 // Load the Google API PHP Client Library.
-require_once '/home/cwfolgkn/public_html/ishacom.biz/vendor/autoload.php';
+require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/vendor/autoload.php';
 
 function initializeAnalytics()
 {
