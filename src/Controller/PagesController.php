@@ -74,16 +74,12 @@ class PagesController extends AppController
     public function index()
     {
         $this->loadModel('Categories');
-        $this->loadModel('Departments');
-        $this->loadModel('Doctors');
         $this->loadModel('News');
-        $this->loadModel('Questions');
 
         $categories = $this->Categories->find()->contain(['Diseases'])->toArray();
         $departments = $this->Departments->find()->toArray();
         $doctors = $this->Doctors->find()->toArray();
         $news = $this->News->find()->toArray();
-        $questions = $this->Questions->find()->toArray();
 
         require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
@@ -91,7 +87,7 @@ class PagesController extends AppController
         $results = getMonthlyRanking($analytics, $profile);
         $ranking_n = $this->ranking($results, 'news');
 
-        $this->set(compact('categories', 'departments', 'doctors', 'news', 'questions', 'ranking_n'));
+        $this->set(compact('categories', 'news', 'ranking_n'));
     }
 
     public function category($id = null)
@@ -99,7 +95,7 @@ class PagesController extends AppController
         $this->loadModel('Categories');
         $this->loadModel('Diseases');
         $category = $this->Categories->get($id, [
-            'contain' => ['Diseases', 'News', 'Questions']
+            'contain' => ['Diseases', 'News']
         ]);
         $disease = $this->Diseases->find()->toArray();
 
@@ -119,7 +115,7 @@ class PagesController extends AppController
         $this->loadModel('Categories');
         $this->loadModel('News');
         $disease = $this->Diseases->get($id, [
-            'contain' => ['Categories', 'News', 'Questions']
+            'contain' => ['Categories', 'News']
         ]);
         $category = $this->Categories->find()->contain(['Diseases'])->toArray();
         $news = $this->News->find()->toArray();
