@@ -14,21 +14,27 @@ body {
 /*フォントサイズ*/
 h1 {
   font-size: 18px;
+  color: #333;
 }
 h2 {
   font-size: 18px;
+  color: #333;
 }
 h3 {
   font-size: 16px;
+  color: #333;
 }
 h4 {
   font-size: 14px;
+  color: #333;
 }
 h5 {
   font-size: 14px;
+  color: #333;
 }
 h6 {
   font-size: 14px;
+  color: #333;
 }
 p {
 	font-size: 14px;
@@ -224,6 +230,18 @@ a:active {
   color: #6e321d;
 }
 
+@media screen and (min-width: 544px) {
+  #indexHeadS img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 543px) {
+  #indexHeadL img {
+    display: none;
+  }
+}
+
 /* ---------- ページボディ内の装飾 ---------- */
 
 /*医者ドットコムニュース一覧 テーブル型*/
@@ -349,7 +367,7 @@ a:active {
   border: 1px solid #eef9ff;
 }
 .borderbottom p {
-  color: #f1f46c;
+  color: #4cbfd4;
 }
 
 
@@ -363,7 +381,7 @@ a:active {
     border: none;
   }
   .borderbottom {
-    border-bottom: 1px solid #fef37f;
+    border-bottom: 1px solid #eee;
     padding: 10px 10px 10px 15px;
   }
   .borderbottom p {
@@ -466,15 +484,15 @@ a:active {
 .onayami_xs-l {
   margin-left: 5px;
   padding-right: 5px;
-  border: 1px solid #f7ded5;
+  border: 1px solid #eee;
   border-top: #fff;
 }
 .onayami_xs-r {
   margin-left: -5px;
   padding-left: 0;
   padding-right: 0;
-  border-right: 1px solid #f7ded5;
-  border-bottom: 1px solid #f7ded5;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 .onayami_xs-l h2 {
   margin: 0;
@@ -588,8 +606,8 @@ a:active {
     font-size: 20px;
     width: 100%;
     padding: 10px;
-  	color: #6e321d;
-    background-color: #f7ded5;
+  	color: #eee;
+    background-color: #eef9ff;
     text-align: center;
   }
 }
@@ -713,7 +731,6 @@ a:active {
 #newsTitle h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #333;
   margin: .67rem 0;
 }
 #newsContent {
@@ -763,6 +780,13 @@ a:active {
 }
 .fb-page {
   margin-top: 50px;
+}
+
+@media screen and (max-width:543px) {
+  #news {
+    border-left: none;
+    border-right: none;
+  }
 }
 
 /* ---------- みんなの医療相談の装飾 ---------- */

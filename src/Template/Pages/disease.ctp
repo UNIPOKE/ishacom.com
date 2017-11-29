@@ -69,7 +69,7 @@ $this->assign('image', $disease->image_path);
 							<p><?= $this->Html->link($reversed->title, ['controller' => 'Pages', 'action' => 'news', $reversed->id]) ?></p>
 						</div>
 						<div class="col-3 hidden-xs-down">
-              <p class="text-right"><?= h($reversed->created) ?></p>
+              <p class="text-right"><?= h($reversed->created->format ("Y/m/d H:i")) ?></p>
 						</div>
 					</div>
         <?php endforeach; ?>

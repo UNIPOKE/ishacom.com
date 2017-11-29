@@ -77,9 +77,13 @@
   <div id="page" style="overflow: hidden;">
     <?= $this->element('accessories') ?>
     <?= $this->element('sns') ?>
-    <?php if ($this->fetch('prefix') !== 'index') {
+    <?php
+    if ($this->fetch('action') === 'index'){
+      echo $this->element('header_index');
+    } else  {
       echo $this->element('header');
-    } ?>
+    }
+    ?>
     <div id="pageBody" class="col-lg-10 offset-lg-1" style="padding: 0;">
       <?= $this->fetch('content') ?>
     </div>

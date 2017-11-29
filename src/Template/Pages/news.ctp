@@ -14,7 +14,7 @@ $this->assign('image', $news->image_path1);
       <div id="main" class="col-md-8 none-padding">
         <section id="news">
           <div id="newsDate">
-            <p><?= h($news->created) ?></p>
+            <p><?= h($news->created->format ("Y年m月d日 H時i分")) ?></p>
           </div>
           <div>
             <?= $this->Html->image($news->image_path1, ['class' => 'img-fluid']); ?>

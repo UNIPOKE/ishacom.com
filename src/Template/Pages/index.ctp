@@ -1,17 +1,11 @@
 <?php
-use Cake\Core\Configure;
-
 $this->assign('title', '医者ドットコム');
 $this->assign('description', null);
 $this->assign('image', null);
-$this->assign('prefix', 'index')
+$this->assign('action', 'index');
 ?>
 
 <article>
-	<section>
-		<?= $this->Html->image('keyv.png', ['class' => 'img-fluid']); ?>
-	</section>
-
 	<div class="container-fluid none-padding">
     <section class="topics_table">
       <h1 class="ttl-bar-bold hidden-sm-up">
@@ -173,7 +167,7 @@ $this->assign('prefix', 'index')
 							<p><?= $this->Html->link($reversed[$i]->title, ['controller' => 'Pages', 'action' => 'news', $reversed[$i]->id]) ?></p>
 						</div>
 						<div class="col-3 hidden-xs-down">
-              <p class="text-right"><?= h($reversed[$i]->created) ?></p>
+              <p class="text-right"><?= h($reversed[$i]->created->format ("Y/m/d H:i")) ?></p>
 						</div>
 					</div>
           <?php
