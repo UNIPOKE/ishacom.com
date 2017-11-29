@@ -73,78 +73,80 @@ class PagesController extends AppController
 
     public function index()
     {
+        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
+        $analytics = initializeAnalytics();
+        $profile = getFirstProfileId($analytics);
+        $paths = getRankingPaths($analytics, $profile);
+
         $this->loadModel('Categories');
         $this->loadModel('News');
 
         $categories = $this->Categories->find()->contain(['Diseases'])->toArray();
         $news = $this->News->find()->toArray();
+        $newsRanking = $this->ranking($paths, $topic = 'news');
 
-        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
-        $analytics = initializeAnalytics();
-        $profile = getFirstProfileId($analytics);
-        $results = getMonthlyRanking($analytics, $profile);
-        $ranking_n = $this->ranking($results, 'news');
-
-        $this->set(compact('categories', 'news', 'ranking_n'));
+        $this->set(compact('categories', 'news','newsRanking'));
     }
 
     public function category($id = null)
     {
-        $this->loadModel('Categories');
-        $this->loadModel('Diseases');
-        $category = $this->Categories->get($id, [
-            'contain' => ['Diseases', 'News']
-        ]);
-        $disease = $this->Diseases->find()->toArray();
-
         require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
-        $results = getMonthlyRanking($analytics, $profile);
-        $ranking_d_c = $this->ranking($results, 'disease', 'category', $category->id);
+        $paths = getRankingPaths($analytics, $profile);
 
-        $this->set(compact('category', 'disease', 'ranking_d_c'));
+        $this->loadModel('Categories');
+        $this->loadModel('Diseases');
+
+        $category = $this->Categories->get($id, [
+          'contain' => ['Diseases', 'News']
+        ]);
+        $disease = $this->Diseases->find()->toArray();
+        $diseaseRanking = $this->ranking($paths, $topic = 'disease', $filter = 'category_id', $id = $category->id, $n = 5);
+
+        $this->set(compact('category', 'disease', 'diseaseRanking'));
         $this->set('_serialize', ['category']);
     }
 
     public function disease($id = null)
     {
-        $this->loadModel('Diseases');
-        $this->loadModel('Categories');
-        $this->loadModel('News');
-        $disease = $this->Diseases->get($id, [
-            'contain' => ['Categories', 'News']
-        ]);
-        $category = $this->Categories->find()->contain(['Diseases'])->toArray();
-        $news = $this->News->find()->toArray();
-
         require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
-        $results = getMonthlyRanking($analytics, $profile);
-        $ranking_n = $this->ranking($results, 'news');
-        $ranking_n_d = $this->ranking($results, 'news', 'disease', $disease->id);
+        $paths = getRankingPaths($analytics, $profile);
 
-        $this->set(compact('disease', 'category', 'news', 'newsRand', 'ranking_n', 'ranking_n_d'));
+        $this->loadModel('Diseases');
+        $this->loadModel('Categories');
+        $this->loadModel('News');
+
+        $disease = $this->Diseases->get($id, [
+          'contain' => ['Categories', 'News']
+        ]);
+        $category = $this->Categories->find()->contain(['Diseases'])->toArray();
+        $news = $this->News->find()->toArray();
+        $newsRanking = $this->ranking($paths, $topic = 'news');
+        $newsRankingD = $this->ranking($paths, $topic = 'news', $filter = 'disease_id', $id = $disease->id, $n = 2);
+
+        $this->set(compact('disease', 'category', 'news', 'newsRanking', 'newsRankingD'));
         $this->set('_serialize', ['disease']);
     }
 
     public function news($id = null)
     {
-        $this->loadModel('News');
-        $news = $this->News->get($id, [
-            'contain' => ['Categories']
-        ]);
-        $newsArray = $this->News->find()->toArray();
-        $newsRand = $this->News->find()->where(['category_id' => $news->category_id])->order('rand()')->limit(8)->toArray();
-
         require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
-        $results = getMonthlyRanking($analytics, $profile);
-        $ranking_n_c = $this->ranking($results, 'news', 'category', $news->category_id);
+        $paths = getRankingPaths($analytics, $profile);
 
-        $this->set(compact('news', 'newsArray', 'newsRand', 'ranking_n_c'));
+        $this->loadModel('News');
+
+        $news = $this->News->get($id, [
+            'contain' => ['Categories']
+        ]);
+        $newsRand = $this->News->find()->where(['category_id' => $news->category_id])->order('rand()')->limit(4)->toArray();
+        $newsRanking = $this->ranking($paths, $topic = 'news', $filter = 'category_id', $id = $news->category_id);
+
+        $this->set(compact('news', 'newsRand', 'newsRanking'));
         $this->set('_serialize', ['news']);
     }
 }

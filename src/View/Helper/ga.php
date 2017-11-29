@@ -61,7 +61,7 @@ function getFirstProfileId($analytics) {
   }
 }
 
-function getMonthlyRanking($analytics, $profileId) {
+function getRankingPaths($analytics, $profileId) {
   $results = $analytics->data_ga->get(
     'ga:' . $profileId,
     '30daysAgo',
@@ -79,8 +79,11 @@ function getMonthlyRanking($analytics, $profileId) {
 
   // 配列で取得したデータをループで回してランキングに
   $ranking = array();
-  foreach ($data as $key => $row) {
-    $ranking[] = array('url'=>$row[0], 'pv'=>$row[1]);
-  }
+  // foreach ($data as $key => $row) {
+  //   $ranking[] = array('url'=>$row[0], 'pv'=>$row[1]);
+  // }
+  foreach ($data as  $row) {
+    $ranking[] = $row[0];
+  }
   return $ranking;
 }

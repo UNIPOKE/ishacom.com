@@ -75,32 +75,32 @@ class AppController extends Controller
         }
     }
 
-    public function ranking($results, $topic, $filter = null, $id = null)
+    public function ranking(array $paths, string $topic, string $filter = null, int $id = null, int $n = 8)
     {
         $this->loadModel('News');
         $this->loadModel('Diseases');
         $this->loadModel('Categories');
 
-        $array = array();
-        if ($topic === 'news') $array = $this->News->find()->toArray();
-        else if ($topic === 'disease') $array = $this->Diseases->find()->toArray();
-        else if ($topic === 'category') $array = $this->Categories->find()->toArray();
+      	$ranking = []; // 戻り値
+      	$i = 0; // index
 
-      	$ranking = array();
-      	$i = 0;
-        foreach( $results as $result ){
-      		$path = $result['url'];
-      		if(strpos($path, $topic) !== false){
-    				preg_match('/[0-9]+/', $path, $match);
-            if($filter === null ||
-              ($filter === 'category' && $array[$match[0] - 1]->category_id == $id) ||
-              ($filter === 'disease'  && $array[$match[0] - 1]->disease_id  == $id)) {
-              $ranking[$i] = $match[0];
-      				$i++;
-      				if( $i === 8) break;
+        // $topicによって取得するobjectを指定
+        if ($topic === 'news') $object = $this->News;
+        else if ($topic === 'disease') $object = $this->Diseases;
+        else if ($topic === 'category') $object = $this->Categories;
+
+        foreach ($paths as $path) {
+            if (strpos($path, $topic) !== false && strpos($path, 'pages') === false) { // pathからtopicに該当するものを検索
+                preg_match('/[0-9]+/', $path, $page_id);  //　ページIDのみをフォーマット
+                $tmp = $object->find()->where(['id' => $page_id[0]])->toArray(); // page_idが合致するレコード（配列）をDBから取得し、一時的に配列tmpへ格納
+
+                if (($filter === null) || ($filter === 'category_id' && $tmp[0]->category_id === $id) || ($filter === 'disease_id'  && $tmp[0]->disease_id  === $id)) {
+                    $ranking[$i] = $tmp[0]; // filterによってtmp内の値を選別し、配列rankingへ格納
+            				$i++;
+            				if ($i === $n) break;
+                }
             }
-      		}
         }
-      	return $ranking;
+        return $ranking;
     }
 }

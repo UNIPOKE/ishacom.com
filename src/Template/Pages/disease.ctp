@@ -21,29 +21,32 @@ $this->assign('image', $disease->image_path);
 
     <div class="row none-margin">
       <div id="main" class="col-md-8 none-padding">
+        <?php
+        define('COUNT', count($newsRankingD));
+        define('LIMIT', 2);
+        if (COUNT !== 0):
+        ?>
         <section class="topics_dict">
           <h1 class="ttl-bar-bold">
             <i class="fa fa-hand-pointer-o fa-lg" aria-hidden="true"></i>
             <?= h($disease->name) ?>の注目ニュース
           </h1>
           <?php
-          define('COUNT', count($ranking_n_d));
-          define('LIMIT', 2);
           for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++):
           ?>
           <div class="row none-margin">
             <div class="topics_dict_img col-3 col-sm-2">
-              <?= $this->Html->image($news[$ranking_n_d[$i] - 1]->image_path2, ['class' => 'img-fluid']); ?>
+              <?= $this->Html->image($newsRankingD[$i]->image_path2, ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
-              <h2><?= $this->Html->link($news[$ranking_n_d[$i] - 1]->title, ['controller' => 'Pages', 'action' => 'news', $news[$ranking_n_d[$i] - 1]->id]) ?></h2>
+              <h2><?= $this->Html->link($newsRankingD[$i]->title, ['action' => 'news', $newsRankingD[$i]->id]) ?></h2>
               <p class="omit">
                 <?php
-                $text = $news[$ranking_n_d[$i] - 1]->body;
+                $text = $newsRankingD[$i]->body;
                 $count = mb_strlen($text, 'UTF-8');
                 $limit = 75;
                 if ($count > $limit) {
-                  $showText = mb_strimwidth($text, 0, $limit*2, '…', 'UTF-8');
+                  $showText = mb_strimwidth($text, 0, $limit * 2, '…', 'UTF-8');
                   echo $showText;
                 } else {
                   echo $text;
@@ -54,6 +57,7 @@ $this->assign('image', $disease->image_path);
           </div><!-- .row -->
         <?php endfor; ?>
         </section><!-- .topics_dict -->
+      <?php endif; ?>
 
         <section class="topics_list">
           <h1 class="ttl-bar-bold">
@@ -66,10 +70,10 @@ $this->assign('image', $disease->image_path);
           ?>
 					<div class="row">
 						<div class="col-sm-9">
-							<p><?= $this->Html->link($reversed->title, ['controller' => 'Pages', 'action' => 'news', $reversed->id]) ?></p>
+							<p><?= $this->Html->link($reversed->title, ['action' => 'news', $reversed->id]) ?></p>
 						</div>
 						<div class="col-3 hidden-xs-down">
-              <p class="text-right"><?= h($reversed->created->format ("Y/m/d H:i")) ?></p>
+              <p class="text-right"><?= h($reversed->created->format("Y/m/d H:i")) ?></p>
 						</div>
 					</div>
         <?php endforeach; ?>
@@ -86,16 +90,10 @@ $this->assign('image', $disease->image_path);
 							<div class="row">
 								<div class="col-sm-6 hidden-xs-down">
                   <?php
-                  switch($i) {
-                    case 0:
-                      echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>';
-                      break;
-                    case 1:
-                      echo '<p class="icon2 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>';
-                      break;
-                    case 2:
-                      echo '<p class="icon3 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>';
-                      break;
+									switch($i) {
+                    case 0: echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                    case 1: echo '<p class="icon2 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                    case 2: echo '<p class="icon3 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
                   }
                   ?>
                 </div>
@@ -105,7 +103,7 @@ $this->assign('image', $disease->image_path);
 							</div>
 						</div>
 						<div class="col-10">
-							<p><?= $this->Html->link($news[$ranking_n[$i] - 1]->title, ['controller' => 'Pages', 'action' => 'news', $ranking_n[$i]]) ?></p>
+							<p><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></p>
 						</div>
 					</div>
           <?php endfor; ?>
@@ -119,13 +117,14 @@ $this->assign('image', $disease->image_path);
             <i class="fa fa-list-alt fa-lg" aria-hidden="true"></i>
             病名から探す
           </h1>
+
 					<div class="hidden-xs-down">
             <?php foreach ($category[$disease->category_id - 1]->diseases as $disease_each): ?>
-            <?php if ($disease->id === $disease_each->id) continue; ?>
+            <?php if ($disease_each->id === $disease->id) continue; ?>
             <div class="borderbottom">
               <p>
                 <i class="fa fa-caret-right fa-lg" aria-hidden="true"></i>
-                <?= $this->Html->link($disease_each->name, ['controller' => 'Pages', 'action' => 'disease', $disease_each->id]) ?>
+                <?= $this->Html->link($disease_each->name, ['action' => 'disease', $disease_each->id]) ?>
               </p>
             </div>
             <?php endforeach; ?>
@@ -134,7 +133,7 @@ $this->assign('image', $disease->image_path);
 					<div class="hidden-sm-up">
             <?php foreach ($category[$disease->category_id - 1]->diseases as $disease_each): ?>
             <?php if ($disease->id === $disease_each->id) continue; ?>
-            <a href="<?= $this->Url->build(['controller' => 'Pages', 'action' => 'disease', $disease_each->id]) ?>">
+            <a href="<?= $this->Url->build(['action' => 'disease', $disease_each->id]) ?>">
       				<div class="borderbottom">
   							<p>
   								<i class="fa fa-caret-right fa-lg" aria-hidden="true"></i>

@@ -14,7 +14,7 @@ $this->assign('image', $news->image_path1);
       <div id="main" class="col-md-8 none-padding">
         <section id="news">
           <div id="newsDate">
-            <p><?= h($news->created->format ("Y年m月d日 H時i分")) ?></p>
+            <p><?= h($news->created->format("Y年m月d日 H時i分")) ?></p>
           </div>
           <div>
             <?= $this->Html->image($news->image_path1, ['class' => 'img-fluid']); ?>
@@ -25,7 +25,7 @@ $this->assign('image', $news->image_path1);
           <div id="newsContent">
             <?= $news->body ?>
             <div id="newsdoctorcom">
-              <p><?= $this->Html->link('医者ドットコム', ['controller' => 'Pages', 'action' => 'index']) ?></p>
+              <p><?= $this->Html->link('医者ドットコム', ['action' => 'index']) ?></p>
             </div>
             </p>
           </div>
@@ -35,6 +35,7 @@ $this->assign('image', $news->image_path1);
           <h1 class="ttl-bar-bold">
             この記事を見た人はこんな記事も見ています
           </h1>
+
           <div class="row none-margin hidden-xs-down">
             <?php for ($i = 0; $i < 4; $i++): ?>
             <?php if ($newsRand[$i]->id === $news->id) continue; ?>
@@ -47,7 +48,7 @@ $this->assign('image', $news->image_path1);
                 </div>
                 <div class="topics_table_title">
                   <div class="inner_title">
-                    <h2><?= $this->Html->link($newsRand[$i]->title, ['controller' => 'Pages', 'action' => 'news', $newsRand[$i]->id]) ?></h2>
+                    <h2><?= $this->Html->link($newsRand[$i]->title, ['action' => 'news', $newsRand[$i]->id]) ?></h2>
                   </div>
                 </div>
               </section>
@@ -55,22 +56,21 @@ $this->assign('image', $news->image_path1);
             <?php endfor; ?>
           </div>
 
-
-          <?php for ($i = 0; $i < 5; $i++): ?>
+          <?php for ($i = 0; $i < 4; $i++): ?>
           <?php if ($newsRand[$i]->id === $news->id) continue; ?>
           <div class="row none-margin hidden-sm-up">
             <div class="topics_dict_img col-3 col-sm-2">
               <?= $this->Html->image($newsRand[$i]->image_path2, ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
-              <h2><?= $this->Html->link($newsRand[$i]->title, ['controller' => 'Pages', 'action' => 'news', $newsRand[$i]->id]) ?></h2>
+              <h2><?= $this->Html->link($newsRand[$i]->title, ['action' => 'news', $newsRand[$i]->id]) ?></h2>
               <p class="omit">
                 <?php
                 $text = $newsRand[$i]->body;
                 $count = mb_strlen($text, 'UTF-8');
                 $limit = 75;
                 if ($count > $limit) {
-                  $showText = mb_strimwidth($text, 0, $limit*2, '…', 'UTF-8');
+                  $showText = mb_strimwidth($text, 0, $limit * 2, '…', 'UTF-8');
                   echo $showText;
                 } else {
                   echo $text;
@@ -90,7 +90,7 @@ $this->assign('image', $news->image_path1);
             <?= h($news->category->name) ?>のニュースランキング
           </h1>
           <?php
-          define('COUNT', count($ranking_n_c));
+          define('COUNT', count($newsRanking));
           define('LIMIT', 8);
           for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++):
           ?>
@@ -99,16 +99,10 @@ $this->assign('image', $news->image_path1);
 							<div class="row">
 								<div class="col-sm-6 hidden-xs-down">
                   <?php
-                  switch($i) {
-                    case 0:
-                      echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>';
-                      break;
-                    case 1:
-                      echo '<p class="icon2 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>';
-                      break;
-                    case 2:
-                      echo '<p class="icon3 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>';
-                      break;
+									switch($i) {
+                    case 0: echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                    case 1: echo '<p class="icon2 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                    case 2: echo '<p class="icon3 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
                   }
                   ?>
 								</div>
@@ -118,7 +112,7 @@ $this->assign('image', $news->image_path1);
 							</div>
 						</div>
 						<div class="col-10">
-							<p><?= $this->Html->link($newsArray[$ranking_n_c[$i] - 1]->title, ['controller' => 'Pages', 'action' => 'news', $ranking_n_c[$i]]) ?></p>
+							<p><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></p>
 						</div>
 					</div>
           <?php endfor; ?>
@@ -131,7 +125,6 @@ $this->assign('image', $news->image_path1);
             </blockquote>
           </div>
         </div>
-
       </div><!-- #sub -->
     </div><!-- .row -->
   </div><!-- .container-fluid -->
