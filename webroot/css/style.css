@@ -333,7 +333,13 @@ a:active {
   margin: 10px 0;
   border-bottom: 1px solid #eee;
 }
-.topics_list .col-sm-6 {
+.topics_list .col-2 {
+  padding: 0 10px;
+}
+.topics_list .col-10 {
+  padding: 0 10px;
+}
+.topics_list .col-6 {
   padding: 0;
 }
 .icon1 {

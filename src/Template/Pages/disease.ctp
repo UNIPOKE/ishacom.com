@@ -31,9 +31,7 @@ $this->assign('image', $disease->image_path);
             <i class="fa fa-hand-pointer-o fa-lg" aria-hidden="true"></i>
             <?= h($disease->name) ?>の注目ニュース
           </h1>
-          <?php
-          for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++):
-          ?>
+          <?php for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++): ?>
           <div class="row none-margin">
             <div class="topics_dict_img col-3 col-sm-2">
               <?= $this->Html->image($newsRankingD[$i]->image_path2, ['class' => 'img-fluid']); ?>
@@ -55,9 +53,9 @@ $this->assign('image', $disease->image_path);
               </p>
             </div>
           </div><!-- .row -->
-        <?php endfor; ?>
+          <?php endfor; ?>
         </section><!-- .topics_dict -->
-      <?php endif; ?>
+        <?php endif; ?>
 
         <section class="topics_list">
           <h1 class="ttl-bar-bold">
@@ -88,7 +86,7 @@ $this->assign('image', $disease->image_path);
 					<div class="row">
 						<div class="col-2">
 							<div class="row">
-								<div class="col-sm-6 hidden-xs-down">
+								<div class="col-6 hidden-xs-down">
                   <?php
 									switch($i) {
                     case 0: echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
@@ -97,8 +95,8 @@ $this->assign('image', $disease->image_path);
                   }
                   ?>
                 </div>
-								<div class="col-sm-6">
-									<p class="rank"><?= $i + 1 ?><span class="hidden-xs-down">位</span></p>
+								<div class="col-6">
+									<p class="rank"><?= $i + 1 ?><span class="hidden-sm-down">位</span></p>
 								</div>
 							</div>
 						</div>

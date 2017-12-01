@@ -18,13 +18,14 @@ $this->assign('image', $category->image_path);
       </div>
     </section>
 
+    <?php
+    define('COUNT', count($diseaseRanking));
+    define('LIMIT', 4);
+    if (COUNT !== 0):
+    ?>
     <section class="topics_table hidden-xs-down">
       <div class="row none-margin">
-        <?php
-        define('COUNT', count($diseaseRanking));
-        define('LIMIT', 4);
-        for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++):
-        ?>
+        <?php for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++): ?>
         <div class="sub_news col-6 col-sm-3 none-padding">
           <section class="each_table">
             <div class="topics_table_img">
@@ -55,6 +56,7 @@ $this->assign('image', $category->image_path);
         <?php endfor; ?>
       </div>
     </section><!-- .topics_table -->
+    <?php endif; ?>
 
 		<div class="row none-margin">
 			<div id="sub" class="col-sm-4 push-sm-8 none-padding">

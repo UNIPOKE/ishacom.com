@@ -97,7 +97,7 @@ $this->assign('image', $news->image_path1);
 					<div class="row">
 						<div class="col-2">
 							<div class="row">
-								<div class="col-sm-6 hidden-xs-down">
+								<div class="col-6 hidden-xs-down">
                   <?php
 									switch($i) {
                     case 0: echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
@@ -106,8 +106,8 @@ $this->assign('image', $news->image_path1);
                   }
                   ?>
 								</div>
-								<div class="col-sm-6">
-									<p class="rank"><?= $i + 1 ?><span class="hidden-xs-down">位</span></p>
+								<div class="col-6">
+									<p class="rank"><?= $i + 1 ?><span class="hidden-sm-down">位</span></p>
 								</div>
 							</div>
 						</div>
