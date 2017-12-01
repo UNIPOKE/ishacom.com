@@ -84,7 +84,7 @@ class PagesController extends AppController
 
         $categories = $this->Categories->find()->contain(['Diseases'])->toArray();
         $news = $this->News->find()->limit(10)->toArray();
-        $newsMain = $this->News->find()->order(['ranking' => 'DESC'])->limit(5)->toArray();
+        $newsMain = $this->News->find()->order(['posted' => 'DESC'])->limit(5)->toArray();
         $newsRanking_m = $this->ranking($monthly, $topic = 'news');
         $newsRanking_w = $this->ranking($weekly, $topic = 'news', $filter = null, $id = null, $n = 5);
 
