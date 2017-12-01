@@ -18,19 +18,19 @@ $this->assign('action', 'index');
           <section class="each_table">
             <div class="topics_table_img">
               <div class="inner_img">
-                <?= $this->Html->image($newsRanking[0]->image_path1, ['class' => 'img-fluid']); ?>
+                <?= $this->Html->image($newsMain[0]->image_path1, ['class' => 'img-fluid']); ?>
               </div>
             </div>
             <div class="topics_table_title">
               <div class="inner_title">
-                <h1><?= $this->Html->link($newsRanking[0]->title, ['action' => 'news', $newsRanking[0]->id]) ?></h1>
+                <h1><?= $this->Html->link($newsMain[0]->title, ['action' => 'news', $newsMain[0]->id]) ?></h1>
                 <p class="omit">
                   <?php
-                  $text = $newsRanking[0]->body;
+                  $text = $newsMain[0]->body;
                   $count = mb_strlen($text, 'UTF-8');
                   $limit = 75;
                   if ($count > $limit) {
-                    $showText = mb_strimwidth($text, 0, $limit*2, '…', 'UTF-8');
+                    $showText = mb_strimwidth($text, 0, $limit * 2, '…', 'UTF-8');
                     echo $showText;
                   } else {
                     echo $text;
@@ -45,21 +45,18 @@ $this->assign('action', 'index');
         <div class="col-6 hidden-xs-down
          none-padding">
           <div class="row none-margin">
-            <?php
-            define('COUNT', count($newsRanking));
-            define('LIMIT', 5);
-            for ($i = 1; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++):
+            <?php for ($i = 1; $i < 5; $i++):
             ?>
             <div class="sub_news col-6 none-padding">
               <section class="each_table">
                 <div class="topics_table_img">
                   <div class="inner_img">
-                    <?= $this->Html->image($newsRanking[$i]->image_path1, ['class' => 'img-fluid']); ?>
+                    <?= $this->Html->image($newsMain[$i]->image_path1, ['class' => 'img-fluid']); ?>
                   </div>
                 </div>
                 <div class="topics_table_title">
                   <div class="inner_title">
-                    <h2><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></h2>
+                    <h2><?= $this->Html->link($newsMain[$i]->title, ['action' => 'news', $newsMain[$i]->id]) ?></h2>
                   </div>
                 </div>
               </section>
@@ -126,16 +123,20 @@ $this->assign('action', 'index');
             <i class="fa fa-hand-pointer-o fa-lg" aria-hidden="true"></i>
             注目のニュース
           </h1>
-          <?php for ($i = 0; $i < 5; $i++): ?>
+          <?php
+          define('COUNT', count($newsRanking_w));
+          define('LIMIT', 5);
+          for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++):
+          ?>
           <div class="row none-margin">
             <div class="topics_dict_img col-3 col-sm-2">
-              <?= $this->Html->image($news[$i]->image_path2, ['class' => 'img-fluid']); ?>
+              <?= $this->Html->image($newsRanking_w[$i]->image_path2, ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
-              <h2><?= $this->Html->link($news[$i]->title, ['action' => 'news', $news[$i]->id]) ?></h2>
+              <h2><?= $this->Html->link($newsRanking_w[$i]->title, ['action' => 'news', $newsRanking_w[$i]->id]) ?></h2>
               <p class="omit">
                 <?php
-                $text = $news[$i]->body;
+                $text = $newsRanking_w[$i]->body;
                 $count = mb_strlen($text, 'UTF-8');
                 $limit = 75;
                 if ($count > $limit) {
@@ -178,7 +179,7 @@ $this->assign('action', 'index');
         <section class="topics_list">
           <h1 class="ttl-bar-bold">
             <i class="fa fa-newspaper-o fa-lg" aria-hidden="true"></i>
-            人気ニュースランキング
+            月間ニュースランキング
           </h1>
           <?php for ($i = 0; $i < 8; $i++): ?>
 					<div class="row">
@@ -199,7 +200,7 @@ $this->assign('action', 'index');
 							</div>
 						</div>
 						<div class="col-10">
-							<p><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></p>
+							<p><?= $this->Html->link($newsRanking_m[$i]->title, ['action' => 'news', $newsRanking_m[$i]->id]) ?></p>
 						</div>
 					</div>
           <?php endfor; ?>

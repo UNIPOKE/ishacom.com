@@ -37,9 +37,9 @@ $this->assign('image', $news->image_path1);
           </h1>
 
           <div class="row none-margin hidden-xs-down">
-            <?php for ($i = 0; $i < 4; $i++): ?>
+            <?php for ($i = 0; $i < 6; $i++): ?>
             <?php if ($newsRand[$i]->id === $news->id) continue; ?>
-            <div class="sub_news col-6 col-sm-3 none-padding">
+            <div class="sub_news col-4 none-padding">
               <section class="each_table">
                 <div class="topics_table_img">
                   <div class="inner_img">

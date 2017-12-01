@@ -22,7 +22,7 @@ $this->assign('image', $disease->image_path);
     <div class="row none-margin">
       <div id="main" class="col-md-8 none-padding">
         <?php
-        define('COUNT', count($newsRankingD));
+        define('COUNT', count($newsRanking_D));
         define('LIMIT', 2);
         if (COUNT !== 0):
         ?>
@@ -34,13 +34,13 @@ $this->assign('image', $disease->image_path);
           <?php for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++): ?>
           <div class="row none-margin">
             <div class="topics_dict_img col-3 col-sm-2">
-              <?= $this->Html->image($newsRankingD[$i]->image_path2, ['class' => 'img-fluid']); ?>
+              <?= $this->Html->image($newsRanking_D[$i]->image_path2, ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
-              <h2><?= $this->Html->link($newsRankingD[$i]->title, ['action' => 'news', $newsRankingD[$i]->id]) ?></h2>
+              <h2><?= $this->Html->link($newsRanking_D[$i]->title, ['action' => 'news', $newsRanking_D[$i]->id]) ?></h2>
               <p class="omit">
                 <?php
-                $text = $newsRankingD[$i]->body;
+                $text = $newsRanking_D[$i]->body;
                 $count = mb_strlen($text, 'UTF-8');
                 $limit = 75;
                 if ($count > $limit) {
@@ -59,7 +59,7 @@ $this->assign('image', $disease->image_path);
 
         <section class="topics_list">
           <h1 class="ttl-bar-bold">
-            <i class="fa fa-newspaper-o fa-lg" aria-hidden="true"></i>
+            <i class="fa fa-list-ul fa-lg" aria-hidden="true"></i></i>
             <?= h($disease->name) ?>のニュース一覧
           </h1>
           <?php
@@ -77,35 +77,55 @@ $this->assign('image', $disease->image_path);
         <?php endforeach; ?>
         </section><!-- .topics_list -->
 
-        <section class="topics_list">
+        <section class="topics_table">
           <h1 class="ttl-bar-bold">
-            <i class="fa fa-newspaper-o fa-lg" aria-hidden="true"></i>
-            人気ニュースランキング
+            <i class="fa fa-hand-pointer-o fa-lg" aria-hidden="true"></i>
+            注目のニュース
           </h1>
-          <?php for ($i = 0; $i < 8; $i++): ?>
-					<div class="row">
-						<div class="col-2">
-							<div class="row">
-								<div class="col-6 hidden-xs-down">
-                  <?php
-									switch($i) {
-                    case 0: echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
-                    case 1: echo '<p class="icon2 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
-                    case 2: echo '<p class="icon3 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
-                  }
-                  ?>
+
+          <div class="row none-margin hidden-xs-down">
+            <?php for ($i = 0; $i < 6; $i++): ?>
+            <div class="sub_news col-4 none-padding">
+              <section class="each_table">
+                <div class="topics_table_img">
+                  <div class="inner_img">
+                    <?= $this->Html->image($newsRanking[$i]->image_path1, ['class' => 'img-fluid']); ?>
+                  </div>
                 </div>
-								<div class="col-6">
-									<p class="rank"><?= $i + 1 ?><span class="hidden-sm-down">位</span></p>
-								</div>
-							</div>
-						</div>
-						<div class="col-10">
-							<p><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></p>
-						</div>
-					</div>
+                <div class="topics_table_title">
+                  <div class="inner_title">
+                    <h2><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></h2>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <?php endfor; ?>
+          </div>
+
+          <?php for ($i = 0; $i < 4; $i++): ?>
+          <div class="row none-margin hidden-sm-up">
+            <div class="topics_dict_img col-3 col-sm-2">
+              <?= $this->Html->image($newsRanking[$i]->image_path2, ['class' => 'img-fluid']); ?>
+            </div>
+            <div class="col-9 col-sm-10">
+              <h2><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></h2>
+              <p class="omit">
+                <?php
+                $text = $newsRanking[$i]->body;
+                $count = mb_strlen($text, 'UTF-8');
+                $limit = 75;
+                if ($count > $limit) {
+                  $showText = mb_strimwidth($text, 0, $limit * 2, '…', 'UTF-8');
+                  echo $showText;
+                } else {
+                  echo $text;
+                }
+                ?>
+              </p>
+            </div>
+          </div><!-- .row -->
           <?php endfor; ?>
-        </section><!-- .topics_list -->
+        </section><!-- .topics_dict -->
       </div><!-- #main -->
 
 

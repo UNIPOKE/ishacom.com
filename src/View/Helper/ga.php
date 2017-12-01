@@ -61,7 +61,7 @@ function getFirstProfileId($analytics) {
   }
 }
 
-function getRankingPaths($analytics, $profileId) {
+function getMonthlyRanking($analytics, $profileId) {
   $results = $analytics->data_ga->get(
     'ga:' . $profileId,
     '30daysAgo',
@@ -87,3 +87,31 @@ function getRankingPaths($analytics, $profileId) {
   }
   return $ranking;
 }
+
+
+function getWeeklyRanking($analytics, $profileId) {
+  $results = $analytics->data_ga->get(
+    'ga:' . $profileId,
+    '7daysAgo',
+    'today',
+    'ga:Pageviews',
+    array(
+      'dimensions'  => 'ga:pagePath', // 副指標
+      'sort'        => '-ga:Pageviews', // - を付けると降順ソート
+      'max-results' => 50, // 取得件数
+    )
+  );
+
+  // 取得したデータから必要な部分を抽出
+  $data = $results->rows;
+
+  // 配列で取得したデータをループで回してランキングに
+  $ranking = array();
+  // foreach ($data as $key => $row) {
+  //   $ranking[] = array('url'=>$row[0], 'pv'=>$row[1]);
+  // }
+foreach ($data as  $row) {
+    $ranking[] = $row[0];
+  }
+  return $ranking;
+}

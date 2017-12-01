@@ -35,7 +35,7 @@ $this->assign('image', $category->image_path);
             </div>
             <div class="topics_table_title">
               <div class="inner_title">
-                <h1><?= $this->Html->link($diseaseRanking[$i]->name, ['action' => 'news', $diseaseRanking[$i]->id]) ?></h1>
+                <h1><?= $this->Html->link($diseaseRanking[$i]->name, ['action' => 'disease', $diseaseRanking[$i]->id]) ?></h1>
                 <p class="omit">
                   <?php
                   $text = $diseaseRanking[$i]->description;
@@ -93,24 +93,58 @@ $this->assign('image', $category->image_path);
 			</div><!-- #sub -->
 
 			<div id="main" class="col-sm-8 pull-sm-4 none-padding">
-				<section class="topics_list">
+        <section class="topics_list">
           <h1 class="ttl-bar-bold">
             <i class="fa fa-newspaper-o fa-lg" aria-hidden="true"></i>
-            <?= h($category->name) ?>のニュース一覧
+            <?= h($category->name) ?>のニュースランキング
+          </h1>
+          <?php
+          define('COUNT_2', count($newsRanking));
+          define('LIMIT_2', 8);
+          for ($i = 0; $i < (COUNT_2 < LIMIT_2 ? COUNT_2 : LIMIT_2); $i++):
+          ?>
+					<div class="row">
+						<div class="col-2">
+							<div class="row">
+								<div class="col-6 hidden-xs-down">
+                  <?php
+									switch($i) {
+                    case 0: echo '<p class="icon1 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                    case 1: echo '<p class="icon2 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                    case 2: echo '<p class="icon3 text-center"><i class="fa fa-star fa-lg" aria-hidden="true"></i></p>'; break;
+                  }
+                  ?>
+								</div>
+								<div class="col-6">
+									<p class="rank"><?= $i + 1 ?><span class="hidden-sm-down">位</span></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-10">
+							<p><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></p>
+						</div>
+					</div>
+          <?php endfor; ?>
+        </section><!-- .topics_list -->
+
+				<section class="topics_list">
+          <h1 class="ttl-bar-bold">
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+            <?= h($category->name) ?>の新着ニュース
           </h1>
           <?php
           $reversed = array_reverse($category->news);
-          foreach ($reversed as $reversed):
+          for ($i = 0; $i < 10; $i++):
           ?>
 					<div class="row">
 						<div class="col-sm-9">
-							<p><?= $this->Html->link($reversed->title, ['action' => 'news', $reversed->id]) ?></p>
+							<p><?= $this->Html->link($reversed[$i]->title, ['action' => 'news', $reversed[$i]->id]) ?></p>
 						</div>
 						<div class="col-3 hidden-xs-down">
-              <p class="text-right"><?= h($reversed->created->format("Y/m/d H:i")) ?></p>
+              <p class="text-right"><?= h($reversed[$i]->created->format("Y/m/d H:i")) ?></p>
 						</div>
 					</div>
-          <?php endforeach; ?>
+          <?php endfor; ?>
         </section><!-- .topics_list -->
       </div><!-- #main -->
 		</div><!-- .row -->
