@@ -119,7 +119,7 @@ $this->assign('image', $news->image_path1);
         </section><!-- .topics_list -->
 
         <div class="col-12 none-padding">
-          <div class="fb-page" data-href="https://www.facebook.com/ishacom.unipoke" data-tabs="timeline" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ishacom.unipoke" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ishacom.unipoke">医者ドットコム</a></blockquote></div>
+          <div class="fb-page" data-href="https://www.facebook.com/ishacom.unipoke" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ishacom.unipoke" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ishacom.unipoke">医者ドットコム</a></blockquote></div>
         </div>
       </div><!-- #sub -->
     </div><!-- .row -->
