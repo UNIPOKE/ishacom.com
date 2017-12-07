@@ -73,7 +73,7 @@ class PagesController extends AppController
 
     public function index()
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $weekly = getWeeklyRanking($analytics, $profile);
@@ -93,7 +93,7 @@ class PagesController extends AppController
 
     public function category($id = null)
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $monthly = getMonthlyRanking($analytics, $profile);
@@ -113,7 +113,7 @@ class PagesController extends AppController
 
     public function disease($id = null)
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $weekly = getWeeklyRanking($analytics, $profile);
@@ -136,7 +136,7 @@ class PagesController extends AppController
 
     public function news($id = null)
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $monthly = getMonthlyRanking($analytics, $profile);
