@@ -18,7 +18,7 @@ $this->assign('action', 'index');
           <section class="each_table">
             <div class="topics_table_img">
               <div class="inner_img">
-                <?= $this->Html->image($newsMain[0]->image_path1, ['class' => 'img-fluid']); ?>
+                <?= $this->Html->image($newsMain[0]->image_path1 . ".jpg", ['class' => 'img-fluid']); ?>
               </div>
             </div>
             <div class="topics_table_title">
@@ -51,7 +51,7 @@ $this->assign('action', 'index');
               <section class="each_table">
                 <div class="topics_table_img">
                   <div class="inner_img">
-                    <?= $this->Html->image($newsMain[$i]->image_path1, ['class' => 'img-fluid']); ?>
+                    <?= $this->Html->image($newsMain[$i]->image_path1 . ".jpg", ['class' => 'img-fluid']); ?>
                   </div>
                 </div>
                 <div class="topics_table_title">
@@ -130,7 +130,7 @@ $this->assign('action', 'index');
           ?>
           <div class="row none-margin">
             <div class="topics_dict_img col-3 col-sm-2">
-              <?= $this->Html->image($newsRanking_w[$i]->image_path2, ['class' => 'img-fluid']); ?>
+              <?= $this->Html->image($newsRanking_w[$i]->image_path2 . ".jpg", ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
               <h2><?= $this->Html->link($newsRanking_w[$i]->title, ['action' => 'news', $newsRanking_w[$i]->id]) ?></h2>
@@ -207,7 +207,7 @@ $this->assign('action', 'index');
         </section><!-- .topics_list -->
 
         <div class="col-12 none-padding">
-          <div class="fb-page" data-href="https://www.facebook.com/ishacom.unipoke" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ishacom.unipoke" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ishacom.unipoke">医者ドットコム</a></blockquote></div>
+          <div class="fb-page" data-href="https://www.facebook.com/ishacom.unipoke" data-tabs="timeline" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ishacom.unipoke" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ishacom.unipoke">医者ドットコム</a></blockquote></div>
         </div>
       </div><!-- #sub -->
     </div><!-- .row -->

@@ -1,7 +1,7 @@
 <?php
 $this->assign('title', $disease->name);
 $this->assign('description', $disease->description);
-$this->assign('image', $disease->image_path);
+$this->assign('image', $disease->image_path . ".jpg");
 ?>
 
 <article>
@@ -10,7 +10,7 @@ $this->assign('image', $disease->image_path);
       <h1 class="ttl-bar-bold hidden-sm-up text-center"><?= h($disease->name) ?></h1>
       <div class="row none-margin">
         <div class="col-md-3">
-          <?= $this->Html->image($disease->image_path, ['class' => 'img-fluid']); ?>
+          <?= $this->Html->image($disease->image_path . ".jpg", ['class' => 'img-fluid']); ?>
         </div>
         <div class="col-md-9 none-padding">
           <h1 class="hidden-xs-down"><?= h($disease->name) ?></h1>
@@ -34,7 +34,7 @@ $this->assign('image', $disease->image_path);
           <?php for ($i = 0; $i < (COUNT < LIMIT ? COUNT : LIMIT); $i++): ?>
           <div class="row none-margin">
             <div class="topics_dict_img col-3 col-sm-2">
-              <?= $this->Html->image($newsRanking_D[$i]->image_path2, ['class' => 'img-fluid']); ?>
+              <?= $this->Html->image($newsRanking_D[$i]->image_path2 . ".jpg", ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
               <h2><?= $this->Html->link($newsRanking_D[$i]->title, ['action' => 'news', $newsRanking_D[$i]->id]) ?></h2>
@@ -89,7 +89,7 @@ $this->assign('image', $disease->image_path);
               <section class="each_table">
                 <div class="topics_table_img">
                   <div class="inner_img">
-                    <?= $this->Html->image($newsRanking[$i]->image_path1, ['class' => 'img-fluid']); ?>
+                    <?= $this->Html->image($newsRanking[$i]->image_path1 . ".jpg", ['class' => 'img-fluid']); ?>
                   </div>
                 </div>
                 <div class="topics_table_title">
@@ -105,7 +105,7 @@ $this->assign('image', $disease->image_path);
           <?php for ($i = 0; $i < 4; $i++): ?>
           <div class="row none-margin hidden-sm-up">
             <div class="topics_dict_img col-3 col-sm-2">
-              <?= $this->Html->image($newsRanking[$i]->image_path2, ['class' => 'img-fluid']); ?>
+              <?= $this->Html->image($newsRanking[$i]->image_path2 . ".jpg", ['class' => 'img-fluid']); ?>
             </div>
             <div class="col-9 col-sm-10">
               <h2><?= $this->Html->link($newsRanking[$i]->title, ['action' => 'news', $newsRanking[$i]->id]) ?></h2>

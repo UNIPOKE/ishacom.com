@@ -1,7 +1,7 @@
 <?php
 
 // Load the Google API PHP Client Library.
-require_once '/home/cwfolgkn/public_html/ishacom.com/vendor/autoload.php';
+require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/vendor/autoload.php';
 
 function initializeAnalytics()
 {
@@ -10,7 +10,7 @@ function initializeAnalytics()
   // Use the developers console and download your service account
   // credentials in JSON format. Place them in this directory or
   // change the key file location if necessary.
-  $KEY_FILE_LOCATION = '/home/cwfolgkn/ishacom-production-b581b4d9f4e0.json';
+  $KEY_FILE_LOCATION = '/home/cwfolgkn/ishacom-staging-2e0096da0e84.json';
 
   // Create and configure a new client object.
   $client = new Google_Client();

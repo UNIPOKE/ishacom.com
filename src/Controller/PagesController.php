@@ -73,7 +73,7 @@ class PagesController extends AppController
 
     public function index()
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $weekly = getWeeklyRanking($analytics, $profile);
@@ -83,7 +83,7 @@ class PagesController extends AppController
         $this->loadModel('News');
 
         $categories = $this->Categories->find()->contain(['Diseases'])->toArray();
-        $news = $this->News->find()->limit(10)->toArray();
+        $news = $this->News->find()->order(['News.created' => 'ASC'])->toArray();
         $newsMain = $this->News->find()->order(['posted' => 'DESC'])->limit(5)->toArray();
         $newsRanking_m = $this->ranking($monthly, $topic = 'news');
         $newsRanking_w = $this->ranking($weekly, $topic = 'news', $filter = null, $id = null, $n = 5);
@@ -93,7 +93,7 @@ class PagesController extends AppController
 
     public function category($id = null)
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $monthly = getMonthlyRanking($analytics, $profile);
@@ -113,7 +113,7 @@ class PagesController extends AppController
 
     public function disease($id = null)
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $weekly = getWeeklyRanking($analytics, $profile);
@@ -136,7 +136,7 @@ class PagesController extends AppController
 
     public function news($id = null)
     {
-        require_once '/home/cwfolgkn/public_html/ishacom.com/src/View/Helper/ga.php';
+        require_once '/home/cwfolgkn/public_html/ishacom.tech/staging/src/View/Helper/ga.php';
         $analytics = initializeAnalytics();
         $profile = getFirstProfileId($analytics);
         $monthly = getMonthlyRanking($analytics, $profile);

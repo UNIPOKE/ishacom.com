@@ -1,7 +1,7 @@
 <?php
 $this->assign('title', $category->name);
 $this->assign('description', $category->description);
-$this->assign('image', $category->image_path);
+$this->assign('image', $category->image_path . ".jpg");
 ?>
 
 <article>
@@ -30,7 +30,7 @@ $this->assign('image', $category->image_path);
           <section class="each_table">
             <div class="topics_table_img">
               <div class="inner_img">
-                <?= $this->Html->image($diseaseRanking[$i]->image_path, ['class' => 'img-fluid']); ?>
+                <?= $this->Html->image($diseaseRanking[$i]->image_path . ".jpg", ['class' => 'img-fluid']); ?>
               </div>
             </div>
             <div class="topics_table_title">
